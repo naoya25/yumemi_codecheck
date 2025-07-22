@@ -21,9 +21,6 @@ GitHubのリポジトリを検索し、検索結果の一覧表示・詳細表�
 lib/
 ├── main.dart                 # アプリエントリーポイント
 ├── views/                    # UI層（画面・Widget）
-│   ├── pages/               # 各画面
-│   ├── widgets/             # 再利用可能なWidget
-│   └── components/          # 画面固有のコンポーネント
 ├── view_models/             # 状態管理・ビジネスロジック
 ├── repositories/            # データアクセス層
 ├── services/               # 外部API・共通サービス
