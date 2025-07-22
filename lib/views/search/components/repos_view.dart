@@ -1,14 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:yumemi_codecheck/view_models/search_view_model.dart';
 import 'package:yumemi_codecheck/views/search/components/repo_item.dart';
 
-class ReposView extends StatelessWidget {
+class ReposView extends HookWidget {
   const ReposView({super.key});
 
   @override
   Widget build(BuildContext context) {
     final searchViewModel = context.watch<SearchViewModel>();
+    final scrollController = useScrollController();
+
+    useEffect(() {
+      void onScroll() {
+        if (scrollController.position.pixels >=
+            scrollController.position.maxScrollExtent - 200) {
+          searchViewModel.loadMore();
+        }
+      }
+
+      scrollController.addListener(onScroll);
+      return () => scrollController.removeListener(onScroll);
+    }, [scrollController]);
 
     if (searchViewModel.isLoading) {
       return const Center(
@@ -75,13 +89,29 @@ class ReposView extends StatelessWidget {
       );
     }
 
-    return ListView.builder(
-      padding: const EdgeInsets.all(16),
-      itemCount: searchViewModel.repos.length,
-      itemBuilder: (context, index) {
-        final repo = searchViewModel.repos[index];
-        return RepoItem(repo: repo);
+    return RefreshIndicator(
+      onRefresh: () async {
+        await searchViewModel.searchRepos(searchViewModel.currentQuery);
       },
+      child: ListView.builder(
+        controller: scrollController,
+        padding: const EdgeInsets.all(16),
+        itemCount: searchViewModel.repos.length +
+            (searchViewModel.isLoadingMore ? 1 : 0),
+        itemBuilder: (context, index) {
+          if (index == searchViewModel.repos.length) {
+            return const Padding(
+              padding: EdgeInsets.symmetric(vertical: 16),
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          }
+
+          final repo = searchViewModel.repos[index];
+          return RepoItem(repo: repo);
+        },
+      ),
     );
   }
 }
