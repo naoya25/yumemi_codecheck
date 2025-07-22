@@ -1,6 +1,8 @@
 import 'package:go_router/go_router.dart';
-import 'package:yumemi_codecheck/constants/routes.dart';
-import 'package:yumemi_codecheck/views/home/page.dart';
+
+import 'constants/routes.dart';
+import 'views/home/home_page.dart';
+import 'views/pages/sample_page.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: Routes.home,
@@ -8,6 +10,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: Routes.home,
       builder: (context, state) => const HomePage(),
+    ),
+    GoRoute(
+      path: Routes.sample,
+      builder: (context, state) => const SamplePage(),
     ),
   ],
 );
