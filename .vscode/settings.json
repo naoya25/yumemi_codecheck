@@ -3,5 +3,11 @@
         "codecheck",
         "cupertino",
         "yumemi"
-    ]
+    ],
+    "cmake.configureOnOpen": false,
+    "explorer.fileNesting.patterns": {
+        "*.dart": "${capture}.g.dart, ${capture}.freezed.dart"
+    },
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.expand": false,
 }

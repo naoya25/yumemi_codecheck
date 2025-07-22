@@ -40,7 +40,7 @@ flutter pub get
 ### 2. コード生成（モデルクラス）
 
 ```bash
-flutter packages pub run build_runner build
+flutter pub run build_runner build --delete-conflicting-outputs
 ```
 
 ### 3. アプリの起動

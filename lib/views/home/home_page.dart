@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:yumemi_codecheck/views/home/components/sample_button.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
+import 'package:yumemi_codecheck/constants/routes.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends HookWidget {
   const HomePage({super.key});
 
   @override
@@ -10,11 +12,20 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Yumemi CodeCheck'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {
+              context.push(Routes.search);
+            },
+          ),
+        ],
       ),
       body: const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Spacer(),
             Icon(
               Icons.search,
               size: 64,
@@ -35,8 +46,7 @@ class HomePage extends StatelessWidget {
                 color: Colors.grey,
               ),
             ),
-            SizedBox(height: 32),
-            SampleButton(),
+            Spacer(flex: 2),
           ],
         ),
       ),
