@@ -10,4 +10,7 @@
     },
     "explorer.fileNesting.enabled": true,
     "explorer.fileNesting.expand": false,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit",
+    }
 }

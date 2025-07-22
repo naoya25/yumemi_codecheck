@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:yumemi_codecheck/constants/routes.dart';
 import 'package:yumemi_codecheck/models/github_repo_model.dart';
 import 'package:yumemi_codecheck/utils/format_num.dart';
 
@@ -14,7 +16,7 @@ class RepoItem extends StatelessWidget {
       elevation: 2,
       child: InkWell(
         onTap: () {
-          // TODO: Navigate to repository detail page
+          context.push(Routes.repoDetail, extra: repo);
         },
         borderRadius: BorderRadius.circular(8),
         child: Padding(

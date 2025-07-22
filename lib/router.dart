@@ -1,4 +1,6 @@
 import 'package:go_router/go_router.dart';
+import 'package:yumemi_codecheck/models/github_repo_model.dart';
+import 'package:yumemi_codecheck/views/repo_detail/repo_detail_page.dart';
 import 'package:yumemi_codecheck/views/search/search_page.dart';
 
 import 'constants/routes.dart';
@@ -19,6 +21,13 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: Routes.search,
       builder: (context, state) => const SearchPage(),
+    ),
+    GoRoute(
+      path: Routes.repoDetail,
+      builder: (context, state) {
+        final repo = state.extra as GithubRepoModel;
+        return RepoDetailPage(repo: repo);
+      },
     ),
   ],
 );
