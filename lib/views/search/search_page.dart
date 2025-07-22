@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:yumemi_codecheck/view_models/search_view_model.dart';
 import 'package:yumemi_codecheck/views/search/components/repos_view.dart';
 
@@ -10,19 +11,18 @@ class SearchPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final searchController = useTextEditingController();
-    final searchViewModel = useState(SearchViewModel());
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
-          children: [
-            _SearchBar(
-              controller: searchController,
-              viewModel: searchViewModel.value,
-            ),
-            Expanded(child: ReposView()),
-          ],
+    return ChangeNotifierProvider(
+      create: (_) => SearchViewModel(),
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: SafeArea(
+          child: Column(
+            children: [
+              _SearchBar(controller: searchController),
+              Expanded(child: ReposView()),
+            ],
+          ),
         ),
       ),
     );
@@ -30,16 +30,14 @@ class SearchPage extends HookWidget {
 }
 
 class _SearchBar extends StatelessWidget {
-  const _SearchBar({
-    required this.controller,
-    required this.viewModel,
-  });
+  const _SearchBar({required this.controller});
 
   final TextEditingController controller;
-  final SearchViewModel viewModel;
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.watch<SearchViewModel>();
+
     return Container(
       decoration: BoxDecoration(
         color: Colors.grey[100],

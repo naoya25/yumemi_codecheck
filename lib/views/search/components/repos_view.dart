@@ -35,7 +35,7 @@ class ReposView extends HookWidget {
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Text(
-            '検索中にエラーが発生しました',
+            searchViewModel.errorMessage!,
             style: const TextStyle(color: Colors.red),
             textAlign: TextAlign.center,
           ),

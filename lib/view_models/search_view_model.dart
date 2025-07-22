@@ -72,7 +72,7 @@ class SearchViewModel extends ChangeNotifier {
       );
 
       _currentPage++;
-      _repos.addAll(response.items);
+      _repos = [..._repos, ...response.items];
       _hasMore = _repos.length < _totalCount;
       _errorMessage = null;
     } catch (e) {
