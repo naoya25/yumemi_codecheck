@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
-import 'package:yumemi_codecheck/views/pages/components/text_field_section.dart';
-import 'package:yumemi_codecheck/views/pages/components/counter_section.dart';
+import 'package:yumemi_codecheck/views/sample/components/text_field_section.dart';
+import 'package:yumemi_codecheck/views/sample/components/counter_section.dart';
 
 class SamplePage extends HookWidget {
   const SamplePage({super.key});
