@@ -3,6 +3,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yumemi_codecheck/constants/routes.dart';
 
+import 'components/theme_toggle_button.dart';
+
 class HomePage extends HookWidget {
   const HomePage({super.key});
 
@@ -13,6 +15,7 @@ class HomePage extends HookWidget {
         title: const Text('Yumemi CodeCheck'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         actions: [
+          const ThemeToggleButton(),
           IconButton(
             icon: const Icon(Icons.search),
             onPressed: () {
@@ -21,32 +24,37 @@ class HomePage extends HookWidget {
           ),
         ],
       ),
-      body: const Center(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Spacer(),
-            Icon(
+            const Spacer(),
+            const Icon(
               Icons.search,
               size: 64,
             ),
-            SizedBox(height: 16),
-            Text(
+            const SizedBox(height: 16),
+            const Text(
               'GitHub リポジトリ検索',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 8),
-            Text(
-              'リポジトリを検索して詳細を確認',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.grey,
+            const SizedBox(height: 8),
+            Builder(
+              builder: (context) => Text(
+                'リポジトリを検索して詳細を確認',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Theme.of(context)
+                      .colorScheme
+                      .onSurface
+                      .withValues(alpha: 0.6),
+                ),
               ),
             ),
-            Spacer(flex: 2),
+            const Spacer(flex: 2),
           ],
         ),
       ),

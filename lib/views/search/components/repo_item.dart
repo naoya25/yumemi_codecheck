@@ -46,7 +46,7 @@ class RepoItem extends StatelessWidget {
                           repo.owner.login,
                           style: TextStyle(
                             fontSize: 14,
-                            color: Colors.grey[600],
+                            color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
                           ),
                         ),
                       ],
@@ -91,14 +91,14 @@ class RepoItem extends StatelessWidget {
                         vertical: 4,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.blue[50],
+                        color: Theme.of(context).colorScheme.primaryContainer,
                         borderRadius: BorderRadius.circular(4),
                       ),
                       child: Text(
                         repo.language!,
                         style: TextStyle(
                           fontSize: 12,
-                          color: Colors.blue[700],
+                          color: Theme.of(context).colorScheme.onPrimaryContainer,
                         ),
                       ),
                     ),

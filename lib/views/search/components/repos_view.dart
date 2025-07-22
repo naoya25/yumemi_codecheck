@@ -36,7 +36,7 @@ class ReposView extends HookWidget {
           padding: const EdgeInsets.all(16),
           child: Text(
             searchViewModel.errorMessage!,
-            style: const TextStyle(color: Colors.red),
+            style: TextStyle(color: Theme.of(context).colorScheme.error),
             textAlign: TextAlign.center,
           ),
         ),
@@ -51,14 +51,14 @@ class ReposView extends HookWidget {
             Icon(
               Icons.search,
               size: 64,
-              color: Colors.grey[400],
+              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.4),
             ),
             const SizedBox(height: 16),
             Text(
               'リポジトリを検索してください',
               style: TextStyle(
                 fontSize: 16,
-                color: Colors.grey[600],
+                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
               ),
             ),
           ],
@@ -74,14 +74,14 @@ class ReposView extends HookWidget {
             Icon(
               Icons.search_off,
               size: 64,
-              color: Colors.grey[400],
+              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.4),
             ),
             const SizedBox(height: 16),
             Text(
               '検索結果が見つかりませんでした',
               style: TextStyle(
                 fontSize: 16,
-                color: Colors.grey[600],
+                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
               ),
             ),
           ],

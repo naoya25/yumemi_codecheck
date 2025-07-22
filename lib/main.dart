@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'constants/theme.dart';
 import 'router.dart';
 import 'view_models/sample_view_model.dart';
+import 'view_models/theme_view_model.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,14 +18,19 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => SampleViewModel()),
+        ChangeNotifierProvider(create: (_) => ThemeViewModel()),
       ],
-      child: MaterialApp.router(
-        title: 'Yumemi CodeCheck App',
-        theme: AppTheme.lightTheme,
-        darkTheme: AppTheme.darkTheme,
-        themeMode: ThemeMode.system,
-        routerConfig: router,
-        debugShowCheckedModeBanner: false,
+      child: Consumer<ThemeViewModel>(
+        builder: (context, themeViewModel, child) {
+          return MaterialApp.router(
+            title: 'Yumemi CodeCheck App',
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+            themeMode: themeViewModel.themeMode,
+            routerConfig: router,
+            debugShowCheckedModeBanner: false,
+          );
+        },
       ),
     );
   }
