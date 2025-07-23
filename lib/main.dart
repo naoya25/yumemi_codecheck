@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'constants/theme.dart';
 import 'router.dart';
+import 'view_models/favorite_view_model.dart';
 import 'view_models/theme_view_model.dart';
 
 void main() {
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeViewModel()),
+        ChangeNotifierProvider(create: (_) => FavoriteViewModel()),
       ],
       child: Consumer<ThemeViewModel>(
         builder: (context, themeViewModel, child) {
