@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 import 'package:yumemi_codecheck/constants/routes.dart';
 import 'package:yumemi_codecheck/models/github_repo_model.dart';
 import 'package:yumemi_codecheck/utils/format_num.dart';
-import 'package:yumemi_codecheck/view_models/favorite_view_model.dart';
 
 class RepoItem extends StatelessWidget {
   const RepoItem({super.key, required this.repo});
@@ -53,16 +51,6 @@ class RepoItem extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ),
-                  Consumer<FavoriteViewModel>(
-                    builder: (context, favoriteViewModel, child) {
-                      final isFavorite = favoriteViewModel.isFavoriteSync(repo.id);
-                      return Icon(
-                        isFavorite ? Icons.star : Icons.star_outline,
-                        color: isFavorite ? Colors.amber : null,
-                        size: 20,
-                      );
-                    },
                   ),
                 ],
               ),
